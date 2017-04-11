@@ -1,6 +1,6 @@
 import os
 import pickle
-
+import codecs
 
 def load_data(path):
     """
@@ -12,13 +12,23 @@ def load_data(path):
 
     return data
 
+def load_data2(path):
+    """
+    Load Dataset from File
+    """
+    input_file = path
+
+    with open(input_file, "r", encoding='UTF-8', errors='ignore') as f:
+        txt = f.read()
+
+    return txt
 
 def preprocess_and_save_data(dataset_path, token_lookup, create_lookup_tables):
     """
     Preprocess Text Data
     """
-    text = load_data(dataset_path)
-    
+    text = load_data2(dataset_path)
+
     # Ignore notice, since we don't use it for analysing the data
     text = text[81:]
 
